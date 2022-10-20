@@ -6,9 +6,9 @@ import resveiwDataService from "../services/reviews.js";
 const Resturant =  props => {
     let {id} = useParams();
     let {user} = props;
-    console.log(user,id);
+    
     const [resturant,setResturant] = useState({});
-
+    
     useEffect(()=>{
         getOneResturant(id);
     },[id])
@@ -43,7 +43,7 @@ const Resturant =  props => {
                 <h3>{resturant.name}</h3>
                 <div><strong>Cuisine: </strong>{resturant.cuisine}</div>
                 <div><strong>Address: </strong>{resturant.address.building}</div>
-                <Link to = {"/review/" + id} className="btn btn-outline-primary">Add Reviews</Link>
+                <Link to = {"/review/" + id} state = {{originalPageUrl:"/review/" + id,resturantName:resturant.name}} className="btn btn-outline-primary">Add Reviews</Link>
                     <h3>Reviews for {resturant.name}</h3>
                         <div className="row">
                         {resturant.reviews.length > 0

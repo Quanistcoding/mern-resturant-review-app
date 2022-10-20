@@ -1,22 +1,25 @@
 import {useState} from "react";
-import {useNavigate} from "react-router-dom";
+import {useNavigate,useLocation} from "react-router-dom";
 
 export default props => {
     const [inputValues, setInputValues] = useState({});
+    const { state } = useLocation();
     const navigate = useNavigate();
     const handleInputChange = (e) =>{
         setInputValues({...inputValues,[e.target.name]:e.target.value})
     }
-
     const login = () => {
         props.login(inputValues);
+        if(state && state.originalPageUrl){
+            navigate(state.originalPageUrl,{state:{resturantName:state.resturantName}});     
+        }else{
         navigate("/");
+        }   
     }
 
     return(
     <div className="container">
       <h2>Please Login</h2>
-        {inputValues.name}
             <div>
                 <div className="mb-3">
                     <label htmlFor = "username">Username</label>

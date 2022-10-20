@@ -13,10 +13,10 @@ export default props => {
     const { id } = useParams();
     const { user } = props;
     const navigate = useNavigate();
-    console.log(user);
+    console.log(state);
     useEffect(()=>{
         if(!user.name){
-            navigate("/login");
+            navigate("/login",{state:{originalPageUrl:state.originalPageUrl,resturantName:state.resturantName}});
         }
         if(state && state.currentReview){
             setIsEditing(true);    
@@ -53,12 +53,10 @@ export default props => {
                 .catch(error=>{console.log(error)});
         }
     }
-// const reviewId = req.body.reviewId;
-// const userId = req.body.userId;
-// const review = req.body.review;
+
     return(
       <div className="container">
-        <h2>{!isEditing ? "Add Review" : "Edit Review for " + state.resturantName} </h2>
+        <h2>{!isEditing ? "Add Review": "Edit Review"} for {state.resturantName} </h2>
             <div>
                 <div className="mb-3">
                     <textarea className="form-control" onChange = {handleReviewContent} value = {reviewContent}></textarea>

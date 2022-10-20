@@ -20,7 +20,7 @@ export default props => {
                 Logout
                 </a>
               :
-              <Link className="nav-link" to ="/login">Login</Link>
+              <Link className="nav-link" to ="/login" state = {{originalPageUrl:"/"}}>Login</Link>
               }
             </li>
          

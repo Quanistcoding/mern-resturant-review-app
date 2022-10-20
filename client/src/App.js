@@ -11,11 +11,11 @@ import {useState} from "react";
 
 function App() {
   const [user,setUser] = useState({});
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const logout = () => {
     setUser({});
-    //navigate("/");
+    navigate("/");
   }
 
   const login = (userInfo) => {

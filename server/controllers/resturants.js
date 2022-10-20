@@ -11,8 +11,12 @@ export default class{
             filter.zipcode = req.query.zipcode
         }
 
-        if(req.query.cuisine && /\S/.test(req.query.cuisine)){
-            filter.cuisine = req.query.cuisine
+        if(req.query.cuisine && /\S/.test(req.query.cuisine && req.query.cuisine !== "All Cuisines")){
+            if(req.query.cuisine === "All Cuisines"){
+                delete filter.cuisine;
+            }else{
+             filter.cuisine = req.query.cuisine
+            }
         }
         
        const data = await dao.findAll(filter);
