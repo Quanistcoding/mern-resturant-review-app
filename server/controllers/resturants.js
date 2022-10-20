@@ -10,15 +10,9 @@ export default class{
         if(req.query.zipcode && /\S/.test(req.query.zipcode)){
             filter.zipcode = req.query.zipcode
         }
-
-        if(req.query.cuisine && /\S/.test(req.query.cuisine && req.query.cuisine !== "All Cuisines")){
-            if(req.query.cuisine === "All Cuisines"){
-                delete filter.cuisine;
-            }else{
+        if(req.query.cuisine && /\S/.test(req.query.cuisine) && req.query.cuisine !== "All Cuisines"){
              filter.cuisine = req.query.cuisine
-            }
         }
-        
        const data = await dao.findAll(filter);
        res.send(data);
     }
